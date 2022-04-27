@@ -16,6 +16,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 </head>
+
 <body>
 
 <div class="container-fluid p-5 bg-primary text-white text-center">
@@ -24,112 +25,137 @@
   
 <div class="container mt-5">
   <div class="row">
-      <div id="root"></div>
+      <div id="root">
+
+      </div>
   </div>
 </div>
 
 </body>
 
 <script type="text/babel">
- 
-    function Col(props) {
-        let className = "col";
-        if (props.size) {
-            className = className + " " + props.size
+
+    function Card(props){
+        return(
+            <div className="card">
+            <div className="card-header">Header</div>
+            <div className="card-body">{props.children}</div>
+            <div className="card-footer">Footer</div>
+            </div>
+        )
+    }
+
+    function THead(props){
+        const columns = props.columnsNames.map(
+            (item, index) => (<th key={index}> {item}</th>)
+        );
+
+        return(
+            <thead>
+                <tr>
+                    {columns}
+                </tr>
+            </thead>
+        )
+    }
+
+    function TableRow(props){
+        const data = props.data
+        const columns = props.columnKeys.map(
+            (columnName, index) => (<td key={index}>{data[columnName]}</td>)
+        )
+        return(
+            <tr>
+                {columns}
+            </tr>
+        )
+    }
+
+    function TBody(props){
+        const data = props.data
+        const columnKeys = props.columnKeys
+        const rows = data.map(
+            (dataRow, index) => (<TableRow key={index} data={dataRow} columnKeys={columnKeys}/>)
+        )
+        return(
+            <tbody>
+                {rows}
+            </tbody>
+        )
+    }
+
+    function Table(props){
+        const data = props.data
+        const columnsNames = props.columnsNames
+        const columnKeys = props.columnKeys
+        return(
+            <table className="table">
+                <THead columnsNames= {columnsNames} />
+
+                <TBody columnKeys= {columnKeys} data={data} />
+            </table>
+        )
+    }
+
+    function EntityLarge(props){
+        const data = props.data
+        const columnsNames = props.columnsNames
+        const columnKeys = props.columnKeys
+        
+        const AddRow = () => {
+            const dataToAdd = {'name': 'Alena', 'surname': 'Válková', 'email': 'alena.valkova@email.com'}
+
+            if (props.onAdd){
+                props.onAdd(dataToAdd)
+            }
         }
-        return (
-            <div className={className}> {props.children} </div>
-        )
-    }
 
-    function Row(props) {
-        return (
-            <div className="row"> {props.children} </div>
-        )
-    }
-
-
-    function CardHeader(props) {
-        return (
-            <div className="card-header" > { props.children } </div>
-            )
-    }
-
-    function CardBody(props) {
-        return (
-            <div className="card-body" > { props.children } </div>
-            )
-    }
-
-    function CardFooter(props) {
-        return (
-            <div className="card-footer" > { props.children } </div>
-            )
-    }
-
-    function Card(props) {
-        return (
-            <div className="card" > { props.children } </div>
-            )
-    }
-
-    function PageMedium(props) {
-        return (
+        return(
             <Card>
-                <CardHeader>Další informace</CardHeader>
-                <CardBody>informace</CardBody>
-                <CardFooter>Patička</CardFooter>
+                <Table data={data} columnsNames={columnsNames} columnKeys={columnKeys} />
+                <button className="btn btn-primary" onClick={AddRow}>Přidej</button>
             </Card>
         )
     }
 
+    function EntityStoryBook(props){
+        const data = [
+            {'name': 'John', 'surname': 'Newbie', 'email': 'johnnewbie@gmail.com'},
+            {'name': 'Emma', 'surname': 'Johanson', 'email': 'emma.johanson@gmail.com'}  
+        ]
+        const columnsNames = ['Jméno','Přijmení','Email']
+        const columnKeys = ['name','surname','email']
 
-    function ExtraInfo(props) {
-        return (
-            <Card>
-                <CardHeader>Další informace</CardHeader>
-                <CardBody>informace</CardBody>
-                <CardFooter>Patička</CardFooter>
-            </Card>
+        return(
+            <EntityLarge
+                data={data}
+                columnsNames={columnsNames} 
+                columnKeys={columnKeys}
+                {...props} />
         )
     }
 
-    function PageLarge(props) {
-        return (
-            <Card>
-                <CardHeader>Podrobné informace</CardHeader>
-                <CardBody>
-                    <Row>
-                        <Col size="col-md-3">
-                            <PageMedium {...props} />
-                        </Col>
+    function Page(props){
+        const [data, setData] = React.useState([])
+        React.useEffect(
+            () => {
+                const dataFromServer = [
+                    {'name': 'Petr', 'surname': 'Novák', 'email': 'petrnovak@gmail.com'},
+                    {'name': 'Jan', 'surname': 'Novotný', 'email': 'jan.novotny@gmail.com'},
+                    {'name': 'Jana', 'surname': 'Novotná', 'email': 'jana.novotna@gmail.com'}
+                ]
 
-                        <Col size="col-md-6">
-                            <ExtraInfo {...props} />
-                        </Col>
-
-                        <Col size="col-md-3">
-                            <Card>
-                                <CardHeader>Další informace</CardHeader>
-                                <CardBody>informace</CardBody>
-                                <CardFooter>Patička</CardFooter>
-                            </Card>
-                        </Col>
-
-                    </Row>
-                
-                </CardBody>
-            </Card>
+                setData(dataFromServer)
+            }, [props.id]
         )
-    }
 
-    function PageStoryBook(props) {
-        const extraProps = {};
-        return <PageLarge {...extraProps} {...props} />
-    }
+        const onAdd = (dataRow) => {
+            setData([...data, dataRow])
+        }
 
-    function Page(props) {
-        return <PageStoryBook {...props} />
+        return(
+            <EntityStoryBook {...props} data={data} onAdd={onAdd} />
+        )
     }
 
     function App(props) {
@@ -138,7 +164,6 @@
                 )
     }
 </script>
-
 
 <script type="text/babel">
     ReactDOM.render(
