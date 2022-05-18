@@ -1,0 +1,2 @@
+S využitím knihovny ReactJS vytvořte komponentu pro zobrazení událostí (rozvrh hodin).
+Pro vizualizaci využijte SVG. Potřebná data převezměte z props.
