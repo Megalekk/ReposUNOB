@@ -92,15 +92,16 @@
         const x2 = ToX(d, end);
         const y2 = ToY(d, end);
         const width = x2 - x;
+        
         //const barva = "rgb(211,211,211)";
         return (
             <>
-            <rect x={x} y={y} width={width} height="150" style={{"fill":"rgb(211,211,211)", "strokeWidth" :1, "stroke": "rgb(127,0,0)"}} />
+            <rect x={x} y={y} width={width} height="150" fill={props.barva} />
 
-            <text x={x+15} y={y+30} font-size="1.1em">Předmět
-                <tspan x={x+15} y={y+60}>Popis</tspan>
-                <tspan x={x+15} y={y+90}>Kdo</tspan>
-                <tspan x={x+15} y={y+120}>Kde</tspan>
+            <text x={x+15} y={y+30} font-size="1em">{props.predmet}
+                <tspan x={x+15} y={y+60}>{props.popis}</tspan>
+                <tspan x={x+15} y={y+90}>{props.kdo}</tspan>
+                <tspan x={x+15} y={y+120}>{props.kde}</tspan>
             </text>
 
             <line x1={x} y1="0" x2={x} y2="1000" style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
@@ -116,7 +117,7 @@
         const vizualizace = data.map((udalost, index) => (<Udalost key={index} {...udalost} />))
         //<Linie />
         return (
-            <svg width="1500" height="1000"> 
+            <svg width="1500" height="1000">
                 {vizualizace}
                 
             </svg>
@@ -124,28 +125,32 @@
     }
 
     function Page(props) {
+        const barvy = [
+            
+        ]
+
         const data = [
-            {'start': new Date(2022, 4, 2, 8, 0, 0, 0), 'end': new Date(2022, 4, 2, 9, 30, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 2, 9, 50, 0, 0), 'end': new Date(2022, 4, 2, 11, 20, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 2, 11, 40, 0, 0), 'end': new Date(2022, 4, 2, 13, 10, 0, 0), 'label': ''},
+            {'start': new Date(2022, 4, 2, 8, 0, 0, 0), 'end': new Date(2022, 4, 2, 9, 30, 0, 0), predmet:'LAB/Informatika', popis:'Projekt', kdo:'Štefek Alexandr', kde:'Š8/20', barva: "rgb(230,175,85)"},
+            {'start': new Date(2022, 4, 2, 9, 50, 0, 0), 'end': new Date(2022, 4, 2, 11, 20, 0, 0), predmet:'Tělesná výchova', popis:'Technika plavání', kdo:'Kellner Petr', kde: 'FITC/Bazén', barva: "rgb(40,185,255)"},
+            {'start': new Date(2022, 4, 2, 11, 40, 0, 0), 'end': new Date(2022, 4, 2, 13, 10, 0, 0), predmet:'LAB/Matematika', popis:'Testování hypotéz', kdo: 'Šindlář Vojtěch', kde: 'Š5B/3',  barva: "rgb(230,175,85)"},
 
-            {'start': new Date(2022, 4, 3, 8, 0, 0, 0), 'end': new Date(2022, 4, 3, 9, 30, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 3, 9, 50, 0, 0), 'end': new Date(2022, 4, 3, 11, 20, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 3, 11, 40, 0, 0), 'end': new Date(2022, 4, 3, 13, 10, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 3, 14, 30, 0, 0), 'end': new Date(2022, 4, 3, 16, 0, 0, 0), 'label': ''},
+            {'start': new Date(2022, 4, 3, 8, 0, 0, 0), 'end': new Date(2022, 4, 3, 9, 30, 0, 0), predmet:'P/Krizové řízení', popis:'Ochrana státu', kdo:'Zeman Tomáš', kde:'Š6/14', barva: "rgb(50,230,100)"},
+            {'start': new Date(2022, 4, 3, 9, 50, 0, 0), 'end': new Date(2022, 4, 3, 11, 20, 0, 0), predmet:'CV/Anglický jazyk', popis:'Politika', kdo:'Nedoma Radek', kde:'K251', barva: "rgb(40,185,255)"},
+            {'start': new Date(2022, 4, 3, 11, 40, 0, 0), 'end': new Date(2022, 4, 3, 13, 10, 0, 0), predmet:'P/Matematika', popis:'Analýza rozptylu', kdo:'Majerová Šárka', kde:'Š8/44', barva: "rgb(50,230,100)"},
+            {'start': new Date(2022, 4, 3, 14, 30, 0, 0), 'end': new Date(2022, 4, 3, 16, 0, 0, 0), predmet:'LAB/Informatika', popis:'Projekt', kdo:'Štefek Alexandr', kde:'Š8/20', barva: "rgb(230,175,85)"},
 
-            {'start': new Date(2022, 4, 4, 8, 0, 0, 0), 'end': new Date(2022, 4, 4, 9, 30, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 4, 9, 50, 0, 0), 'end': new Date(2022, 4, 4, 11, 20, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 4, 11, 40, 0, 0), 'end': new Date(2022, 4, 4, 13, 10, 0, 0), 'label': ''},
+            {'start': new Date(2022, 4, 4, 8, 0, 0, 0), 'end': new Date(2022, 4, 4, 9, 30, 0, 0), predmet:'CV/Krizové řízení', popis:'Ochrana obyvatel', kdo:'Zeman Tomáš', kde:'Š6/14', barva: "rgb(50,230,100)"},
+            {'start': new Date(2022, 4, 4, 9, 50, 0, 0), 'end': new Date(2022, 4, 4, 11, 20, 0, 0), predmet:'LAB/Informatika', popis:'Projekt', kdo:'Štefek Alexandr', kde:'Š8/20', barva: "rgb(230,175,85)"},
+            {'start': new Date(2022, 4, 4, 11, 40, 0, 0), 'end': new Date(2022, 4, 4, 13, 10, 0, 0), predmet:'P/Matematika', popis:'Analýza rozptylu', kdo:'Majerová Šárka', kde:'Š8/44', barva: "rgb(50,230,100)"},
 
             
-            {'start': new Date(2022, 4, 5, 8, 0, 0, 0), 'end': new Date(2022, 4, 5, 9, 30, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 5, 9, 50, 0, 0), 'end': new Date(2022, 4, 5, 11, 20, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 5, 11, 40, 0, 0), 'end': new Date(2022, 4, 5, 13, 10, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 5, 14, 30, 0, 0), 'end': new Date(2022, 4, 5, 16, 0, 0, 0), 'label': ''},
+            {'start': new Date(2022, 4, 5, 8, 0, 0, 0), 'end': new Date(2022, 4, 5, 9, 30, 0, 0), predmet:'P/Krizové řízení', popis:'Ochrana státu', kdo:'Zeman Tomáš', kde:'Š6/14', barva: "rgb(50,230,100)"},
+            {'start': new Date(2022, 4, 5, 9, 50, 0, 0), 'end': new Date(2022, 4, 5, 11, 20, 0, 0), predmet:'Tělesná výchova', popis:'Technika plavání', kdo:'Kellner Petr', kde: 'FITC/Bazén', barva: "rgb(40,185,255)"},
+            {'start': new Date(2022, 4, 5, 11, 40, 0, 0), 'end': new Date(2022, 4, 5, 13, 10, 0, 0), predmet:'P/Teorie grafů', popis:'Rovinné grafy', kdo:'Potůček Radovan', kde:'Š8/44', barva: "rgb(50,230,100)"},
+            {'start': new Date(2022, 4, 5, 14, 30, 0, 0), 'end': new Date(2022, 4, 5, 16, 0, 0, 0), predmet:'LAB/Informatika', popis:'Projekt', kdo:'Štefek Alexandr', kde:'Š8/20', barva: "rgb(230,175,85)"},
 
-            {'start': new Date(2022, 4, 6, 8, 0, 0, 0), 'end': new Date(2022, 4, 6, 9, 30, 0, 0), 'label': ''},
-            {'start': new Date(2022, 4, 6, 9, 50, 0, 0), 'end': new Date(2022, 4, 6, 11, 20, 0, 0), 'label': ''},
+            {'start': new Date(2022, 4, 6, 8, 0, 0, 0), 'end': new Date(2022, 4, 6, 9, 30, 0, 0), predmet:'LAB/Informatika', popis:'Projekt', kdo:'Štefek Alexandr', kde:'Š8/20', barva: "rgb(230,175,85)"},
+            {'start': new Date(2022, 4, 6, 9, 50, 0, 0), 'end': new Date(2022, 4, 6, 11, 20, 0, 0), predmet:'P/Teorie grafů', popis:'Rovinné grafy', kdo:'Potůček Radovan', kde:'Š8/44', barva: "rgb(40,185,255)"},
             
 
         ]
