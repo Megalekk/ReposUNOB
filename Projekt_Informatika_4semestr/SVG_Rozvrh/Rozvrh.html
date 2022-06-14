@@ -34,20 +34,24 @@
 </body>
 
 <script type="text/babel">
+    //S využitím knihovny ReactJS vytvořte komponentu pro zobrazení událostí (rozvrh hodin).
+    //Pro vyzualizaci využijte SVG. Potřebná data převezměte z props.
+
+    //udělat popis datumu a času
 
     function ToY(refDay, day){
         var rozdilCasu = day.getTime() - refDay.getTime()
         var rozdilDnu = Math.floor(rozdilCasu / (1000 * 3600 * 24))
         var vysledek = rozdilDnu * 150
         
-        return vysledek
+        return vysledek +30
     }
 
     function ToX(refDay, cas){
         const casDayBegin = new Date(cas.getFullYear(), cas.getMonth(), cas.getDate(), 8)
         var vysledek = cas.getTime() - casDayBegin.getTime()
 
-        return vysledek / 36000
+        return (vysledek / 36000)+100
     }
 
     function Udalost(props) {
@@ -59,6 +63,8 @@
         const x2 = ToX(d, end);
         const y2 = ToY(d, end);
         const width = x2 - x;
+        const datum = d.getDate()
+        console.log(datum)
         
         return (
             <>
@@ -70,9 +76,9 @@
                 <tspan x={x+15} y={y+120}>{props.kde}</tspan>
             </text>
 
-            <line x1={x} y1="0" x2={x} y2="1000" style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
-            <line x1={x2} y1="0" x2={x2} y2="1000" style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
-            <line x1={x} y1={y} x2="1200" y2={y2} style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
+            <line x1={x} y1="0" x2={x} y2="780" style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
+            <line x1={x2} y1="0" x2={x2} y2="780" style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
+            <line x1="0" y1={y} x2="1000" y2={y2} style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
             </>
         )
     }
