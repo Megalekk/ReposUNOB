@@ -78,15 +78,28 @@
             <line x1={x2} y1="0" x2={x2} y2="780" style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
             <line x1="0" y1={y} x2="1000" y2={y2} style={{"stroke": "rgb(0,0,0)", "strokeWidth":1}} />
 
-            <svg height="30" width="200">
-                <text x="105" y="15" >08:00</text>
-                <text x="180" y="15" >09:30</text>
-                
-            </svg>
 
-            <svg height="30" width="200">
-                <text x="0" y="35" >Po</text>  
-            </svg>
+            <text x="105" y="15" >08:00</text>
+            <text x="205" y="25" >09:30</text>
+
+            <text x="290" y="15" >09:50</text>
+            <text x="390" y="25" >11:20</text>
+
+            <text x="470" y="15" >11:40</text>
+            <text x="572" y="25" >13:10</text>
+
+            <text x="620" y="15" >13:10</text>
+            <text x="705" y="25" >14:00</text>
+
+            <text x="755" y="15" >14:30</text>
+            <text x="855" y="25" >16:00</text>
+
+            <text x="20" y="120" fontSize="50">Po</text>
+            <text x="20" y="270" fontSize="50">Út</text> 
+            <text x="20" y="420" fontSize="50">St</text> 
+            <text x="20" y="570" fontSize="50">Čt</text> 
+            <text x="20" y="720" fontSize="50">Pá</text> 
+
             </>
 
             
@@ -107,7 +120,10 @@
             return 'rgb('+random(255)+','+random(255)+','+random(255)+')';
         }
 
-        data.forEach((udalost)=>predmety[udalost.predmet]=randomColor())
+        data.forEach(
+            (udalost)=>
+                predmety[udalost.predmet]=randomColor()
+            )
 
         function getColor(predmet){
             return predmety[predmet]
