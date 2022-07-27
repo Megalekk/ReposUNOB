@@ -1,2 +1,29 @@
 S využitím knihovny ReactJS vytvořte komponentu pro zobrazení událostí (rozvrh hodin).
 Pro vizualizaci využijte SVG. Potřebná data převezměte z props.
+
+Prvně jsem začal se seznámením s JS a Reactem, pomocí hodin ve škole a internetu.
+Po domluvě s učitelem jsem věděl na čem mám zapracovat a co si zjistit.
+
+Začal jsem tedy zjišťovat jak funguje tabulka a text v Reactu
+Poté jsem vypracoval jednoduchou tabulku rozvrhu podle zadaného příkladu.
+
+Po tabulce jsem se přesunul na SVG a začal jsem se svým rozvrhem.
+Zde jsem nejprve udělal události (čtverečky), které se však od ničeho neodvíjely.
+Proto jsem začal s osou, kterou jsem chtěl referencovat podle data. Zjistlil jsem si tedy věci k funkci Date a vrhl se na to.
+Po konzuktaci jsem věděl, jak by se to mělo provézt. X osa bude čas a Y osa budou jednotlivé dny.
+nakonec se mi to povedlo a události jsem referencoval podle již vytvořené osy se dny a časem.
+Díkdy těmto událostem, jsem se snažil udělat linie rozvrhu, které jsem vypsal natvrdo, což byl problém.
+Nějakou dobu jsem strávil nad tím, aby se linie vypisovaly samy podle konců a začátků jednotlivých událotí a to se nakonec povedlo.
+
+Po dokončení ohraničení jsem se přesunul na popis událostí s pomocí dictionary.
+Zde jsem opět začal s vypisováním natvrdo. Ale díky cvičením ve škole jsem si uvědomil, že se to dá udělat poimocí props.
+Tak jsem tak udělal a všechny události byli vypsané.
+
+Následně jsem se přesunul na barvení událostí.
+Nejdřív jsem to chtěl udělat tak, aby každá událost měla jinou barvu a začal jsem je opět dávat natvrdo.
+Poté jsem konzultoval s učitelem jak by se to dalo udělat lépe. 
+Zde jsem narazil zatím na největší problém, kdy mi to vůbec nešlo vyřešit.
+A domluvili jsme se s učitelem, že se barvy budou dávat vždy náhodně po každém otevření jiné pro každý předmět.
+
+Nakonec jsem začal řešit popis času hodin a popis dnů.
+Zde jsem opět narazil na problém, že se vypisování času zakrývalo a nešlo vidět.
