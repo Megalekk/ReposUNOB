@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Formular</h2>
+
+<form action="action_page.php" method="post">
+  Jmeno: <input type="text" name="name"><br>
+  E-mail: <input type="text" name="email"><br>
+
+  <p></p>
+
+  <label for="Jidla">Zvolte nejoblibenejsi jidlo z vyberu:</label>
+  <select id="jidlo" name="jidlo">
+    <option value="pizza">pizza</option>
+    <option value="kebab">Kebab</option>
+    <option value="spaghetti">Spaghetti</option>
+    <option value="svickova">Svickova</option>
+  </select><br>
+
+  <p></p>
+
+  <label for="Jidla?">Napiste duvod proc jste vybral tohle jidlo:</label><br>
+  <textarea name="proc" rows="4" cols="50">Tohle jidlo mi chutna protoze...</textarea>
+  <br>
+
+  <p></p>
+
+  <label for="Jidla">Zvolte dopravni prostredky, ktere vlastnite:</label><br>
+
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> Mam kolo</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> Mam auto</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> Mam lod</label><br>
+
+  <p></p>
+
+  Jakou preferujete barvu?<br>
+  <input type="radio" name="color" value="Modra">Modra<br>
+  <input type="radio" name="color" value="Cervena">Cervena<br>
+  <input type="radio" name="color" value="Zelena">Zelena<br>
+  <input type="submit" value="Submit">
+</form>
+
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+</html>
+
+checkbox, radio a select a text area
