@@ -1,1 +1,10 @@
-Asynchronní loader pro databáze 
+Asynchronní loader pro databáze
+
+dataloader - github aiodataloader
+
+sprovoznění databáze v dockeru
+
+---databáze a dataloader nad ním, elasticsearch pro lepší, sběr dat ze stránek UNOBu---
+
+pypeteer - pracuje s chromiem
+selenium - WebDriverApi
