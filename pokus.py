@@ -72,7 +72,7 @@ def get_teacher_links_one_department(link_department):
     teacher_elems=table_actual_teacher.find_elements(By.CSS_SELECTOR, "[style*='width: 150px; line-height: 16px; vertical-align: middle'] [href]")
     teacher_links = [teacher_elem.get_attribute("href") for teacher_elem in teacher_elems]
     return teacher_links
-
+###
 #Get all the links of all teachers and write to teacherlinks.txt
 #1 lấy hết các links giáo viên và viết vào teacherlinks.txt
 teacher_links = []
